@@ -30,6 +30,13 @@ class BowlingGameTest {
         assertEquals(bowlingGame.scoring(),67);
     }
 
+    @Test
+    void should_involve_strike_bonus_when_scoring_given_one_strike_occurs(){
+        bowlingGame.roll(10);
+        rolls(3,18);
+        assertEquals(bowlingGame.scoring(),70);
+    }
+
     private void rolls(int score){
         for (int rollIndex = 0; rollIndex < 20; rollIndex++) {
             bowlingGame.roll(score);
