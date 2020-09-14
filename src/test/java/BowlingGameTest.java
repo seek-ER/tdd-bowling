@@ -26,14 +26,18 @@ class BowlingGameTest {
     void should_involve_spare_bonus_when_scoring_given_one_spare_occurs(){
         bowlingGame.roll(6);
         bowlingGame.roll(4);
-        for (int rollIndex = 0; rollIndex < 18; rollIndex++) {
-            bowlingGame.roll(3);
-        }
+        rolls(3,18);
         assertEquals(bowlingGame.scoring(),67);
     }
 
     private void rolls(int score){
         for (int rollIndex = 0; rollIndex < 20; rollIndex++) {
+            bowlingGame.roll(score);
+        }
+    }
+
+    private void rolls(int score,int times){
+        for (int rollIndex = 0; rollIndex < times; rollIndex++) {
             bowlingGame.roll(score);
         }
     }
