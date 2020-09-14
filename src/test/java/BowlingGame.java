@@ -7,14 +7,11 @@ public class BowlingGame {
         int totalScore = 0;
         int rollIndex = 0;
         for (int round = 0; round < 10; round++) {
-            if (scores.get(rollIndex)==10){
-                totalScore += 10;
-                totalScore += scores.get(rollIndex+1);
-                totalScore += scores.get(rollIndex+2);
+            if (isStrike(rollIndex)){
+                totalScore += (10+getStrikeBonus(rollIndex));
                 rollIndex++;
             }else if (isSpare(rollIndex)){
-                totalScore += 10;
-                totalScore += scores.get(rollIndex+2);
+                totalScore += 10+getSpareBonus(rollIndex);
                 rollIndex += 2;
             }else {
                 totalScore += scores.get(rollIndex);
@@ -31,5 +28,17 @@ public class BowlingGame {
 
     private boolean isSpare(int rollIndex){
         return (scores.get(rollIndex) + scores.get(rollIndex+1)) >=10;
+    }
+
+    private boolean isStrike(int rollIndex){
+        return scores.get(rollIndex) == 10;
+    }
+
+    private int getSpareBonus(int rollIndex){
+        return scores.get(rollIndex+2);
+    }
+
+    private int getStrikeBonus(int rollIndex){
+        return scores.get(rollIndex+1)+scores.get(rollIndex+2);
     }
 }
